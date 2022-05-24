@@ -4,7 +4,7 @@ Neural network implementation for cpp.
 
 ## Usage
 
-Include [nn.h](./nn.h) using `#include "nn.h"` and [nn.cpp](./nn.cpp) using `g++ main.cpp nn.cpp`.
+Include [nn.h](./nn.h) using `#include "nn.h"`.
 
 ## Example
 
