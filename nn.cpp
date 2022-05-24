@@ -8,7 +8,7 @@ float fisr(float x) {
 float sig(float x) {
     return x / (1 + ((x < 0) ? -x : x));
 }
-float dot(float* v, float* w, int n) {
+float dot(float* v, float* w, unsigned int n) {
     float sum = 0;
     for (unsigned int i = 0; i < n; i++) {
         sum += v[i] * w[i];
@@ -49,7 +49,7 @@ unsigned int NN::predict(float* input) {
         h_out[i] = sig(dot(input, this->h_weights[i], this->inputs));
     }
     float max = dot(h_out, this->o_weights[0], this->hidden_l);
-    int max_index = 0;
+    unsigned int max_index = 0;
     for (unsigned int i = 1; i < this->outputs; i++) {
         float value = dot(h_out, this->o_weights[i], this->hidden_l);
         if (value > max) {
