@@ -1,14 +1,7 @@
-#include <random>
-float fisr(float x)
-{
-    float y = x;
-    long i = 0x5f3759df - (*(long *)&y >> 1);
-    y = *(float *)&i;
-    return y * (3 - (x * y * y)) / 2;
-}
+#include <cmath>
 float sig(float x)
 {
-    return x / (1 + ((x < 0) ? -x : x));
+    return 1 / (1 + exp(-x));
 }
 float dot(float *v, float *w, unsigned int n)
 {
@@ -28,7 +21,7 @@ public:
             this->h_weights[i] = new float[input];
             for (unsigned int j = 0; j < input; j++)
             {
-                float r = fisr(hidden);
+                float r = 1 / sqrt(hidden);
                 this->h_weights[i][j] = (((float)rand()) / (float)RAND_MAX) * 2 * r - r;
             }
         }
@@ -38,7 +31,7 @@ public:
             this->o_weights[i] = new float[hidden];
             for (unsigned int j = 0; j < hidden; j++)
             {
-                float r = fisr(output);
+                float r = 1 / sqrt(output);
                 this->o_weights[i][j] = (((float)rand()) / (float)RAND_MAX) * 2 * r - r;
             }
         }
